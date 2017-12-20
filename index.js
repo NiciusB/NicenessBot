@@ -1,7 +1,7 @@
 const TwitterBotPool = require('./TwitterBotPool.js')
 const botPool = new TwitterBotPool({
     tokens: require('./tokens.js'),
-    tweet_reload_time: 15 * 60 * 60 * 1000,
+    tweet_reload_time: 15 * 60 * 1000,
     initial_tweet: true
 })
 
