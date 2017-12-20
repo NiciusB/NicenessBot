@@ -1,0 +1,27 @@
+{
+  "name": "nicenessbot",
+  "version": "1.0.0",
+  "description": "Twitter bot @NicenessBot",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/NiciusB/NicenessBot.git"
+  },
+  "keywords": [
+    "bot",
+    "twitter",
+    "twitterbot"
+  ],
+  "author": "NiciusB",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/NiciusB/NicenessBot/issues"
+  },
+  "homepage": "https://github.com/NiciusB/NicenessBot#readme",
+  "dependencies": {
+    "twit": "^2.2.9"
+  }
+}
