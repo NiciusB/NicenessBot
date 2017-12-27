@@ -26,7 +26,7 @@ function interval() {
                     message.entities.user_mentions.forEach(mention => {
                         var tweet = botPool.tweet({ status: '@' + mention.screen_name + ' ' + statuses[Math.floor(Math.random() * statuses.length)] })
                         if (tweet) {
-                            tweet.promise.then(result => {
+                            tweet.promise.then((err, result, response) => {
                                 if (!result.data.entities.user_mentions.length) tweet.client.delete('direct_messages/destroy', { id: result.data.id_str })
                             })
                             removeDirectMessage = true
