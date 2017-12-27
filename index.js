@@ -17,17 +17,17 @@ const statuses = [
 
 function interval() {
     const mainClient = botPool.getClient(0)
-    mainClient.get('direct_messages', { count: 200 }, (error, messages, response) => {
-        if (messages) {
-            messages.forEach(message => {
+    mainClient.get('direct_messages', { count: 200 }).then(result => {
+        if (result.data) {
+            result.data.forEach(message => {
                 var removeDirectMessage = true
                 if (message.entities.user_mentions.length) {
                     removeDirectMessage = false
                     message.entities.user_mentions.forEach(mention => {
                         var tweet = botPool.tweet({ status: '@' + mention.screen_name + ' ' + statuses[Math.floor(Math.random() * statuses.length)] })
                         if (tweet) {
-                            tweet.promise.then((err, result, response) => {
-                                if (!result.data.entities.user_mentions.length) tweet.client.delete('direct_messages/destroy', { id: result.data.id_str })
+                            tweet.promise.then(res => {
+                                if (!res.data.entities.user_mentions.length) tweet.client.delete('direct_messages/destroy', { id: res.data.id_str })
                             })
                             removeDirectMessage = true
                         }
