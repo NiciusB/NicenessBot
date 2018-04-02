@@ -18,7 +18,7 @@ const statuses = [
 function interval() {
     const mainClient = botPool.getClient(0)
     mainClient.get('direct_messages', { count: 200 }).then(result => {
-        if (result.data) {
+        if (result.data && typeof result.data.forEach === 'function') {
             result.data.forEach(message => {
                 var removeDirectMessage = true
                 if (message.entities.user_mentions.length) {
@@ -27,7 +27,7 @@ function interval() {
                         var tweet = botPool.tweet({ status: '@' + mention.screen_name + ' ' + statuses[Math.floor(Math.random() * statuses.length)] })
                         if (tweet) {
                             tweet.promise.then(res => {
-                                if (!res.data.entities.user_mentions.length) tweet.client.delete('direct_messages/destroy', { id: res.data.id_str })
+                                if (!res.data.entities || !res.data.entities.user_mentions.length) tweet.client.delete('direct_messages/destroy', { id: res.data.id_str })
                             })
                             removeDirectMessage = true
                         }
